@@ -164,5 +164,5 @@ function setupCommunityUI() {
 }
 
 /* router hook */
-
 window.initCommunities = initCommunities;
+export default initCommunities;

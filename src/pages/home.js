@@ -61,3 +61,5 @@ function initHome(container) {
 }
 
 window.initHome = initHome;
+export default initHome;
+
