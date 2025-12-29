@@ -14,7 +14,7 @@ function initHome(container) {
   loadHomeCSS();
 
   container.innerHTML = `
-    <h1 class="page-title">Dashboard</h1>
+    <h1 class="page-title"></h1>
 
     <!-- Friends Section -->
     <section class="section">
@@ -50,12 +50,21 @@ function initHome(container) {
       </div>
       <div class="continue-grid" id="resourcesGrid"></div>
     </section>
+
+    <!-- Favourites Section -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Favourites</h2>
+      </div>
+      <div class="continue-grid" id="favouritesGrid"></div>
+    </section>
   `;
 
   setTimeout(() => {
     loadFriends();
     loadRecommended();
     loadResources();
+    loadFavourites();
     setupEventListeners();
   }, 0);
 }
