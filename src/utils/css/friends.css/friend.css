@@ -1,13 +1,12 @@
-/* Friends bar container */
+
 .friends-container {
   display: flex;
-  gap: 10px;
-  padding: 10px;
+  gap: 12px;
+  padding: 10px 4px;
   overflow-x: auto;
   background: transparent;
 }
 
-/* Hide scrollbar (optional, Roblox-like) */
 .friends-container::-webkit-scrollbar {
   height: 6px;
 }
@@ -16,42 +15,39 @@
   border-radius: 999px;
 }
 
-/* Friend item */
 .friend-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  min-width: 60px;
+  min-width: 64px;
+  user-select: none;
 }
 
-/* Avatar (ROUND like Roblox) */
 .friend-avatar {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  overflow: hidden;
-  background: #2a2d33;
+  background: #2a2a2a;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
-/* Avatar image */
 .friend-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
-/* Hover = slight lift */
 .friend-item:hover .friend-avatar {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
 }
 
-/* Online indicator */
 .friend-item.online .friend-avatar::after {
   content: "";
   position: absolute;
@@ -59,19 +55,39 @@
   right: 2px;
   width: 12px;
   height: 12px;
-  background: #4caf50;
-  border: 2px solid #0b0d10;
+  background: #4ade80;
+  border: 2px solid #1a1a1a;
   border-radius: 50%;
 }
 
-/* Username (optional, subtle) */
 .friend-name {
   margin-top: 6px;
   font-size: 12px;
   color: rgba(255,255,255,0.75);
   text-align: center;
-  max-width: 60px;
+  max-width: 64px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.friend-item.add-friend .friend-avatar {
+  background: #2f2f2f;
+  border: 1px dashed rgba(255,255,255,0.25);
+}
+
+.friend-item.add-friend svg {
+  width: 22px;
+  height: 22px;
+  color: rgba(255,255,255,0.7);
+  pointer-events: none;
+}
+
+.friend-item.add-friend:hover .friend-avatar {
+  background: #3a3a3a;
+  border-color: rgba(255,255,255,0.45);
+}
+
+.friend-item.add-friend:hover svg {
+  color: #ffffff;
 }

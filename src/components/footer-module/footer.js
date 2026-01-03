@@ -19,12 +19,12 @@ export default function initFooter(container) {
         
         <!-- Footer Links -->
         <div class="footer-links">
-          <a href="/about">About</a>
-          <a href="/jobs">Jobs</a>
-          <a href="/blog">Blog</a>
-          <a href="/help">Help</a>
-          <a href="/terms">Terms</a>
-          <a href="/privacy">Privacy</a>
+          <a href="/#about">About</a>
+          <a href="/#jobs">Jobs</a>
+          <a href="/#blog">Blog</a>
+          <a href="/#help">Help</a>
+          <a href="/#terms">Terms </a>
+          <a href="/#privacy">Privacy</a>
         </div>
 
         <!-- Bottom Bar -->
@@ -43,7 +43,7 @@ export default function initFooter(container) {
 
           <!-- Copyright -->
           <div class="footer-copyright">
-            <p>© ${currentYear} DynaBlocks Corporation</p>
+            <p>© 2025 DynaBlocks Corporation</p>
           </div>
         </div>
 
