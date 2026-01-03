@@ -1,0 +1,91 @@
+.library-page {
+  padding: 20px;
+}
+
+.library-header {
+  margin-bottom: 20px;
+}
+
+.library-header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.library-header p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted, #777);
+}
+
+/* Section */
+.library-section {
+  margin-bottom: 26px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.section-header h2 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.see-all {
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: #007aff;
+  cursor: pointer;
+}
+
+/* Horizontal row */
+.card-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+/* Cards */
+.library-card {
+  min-width: 120px;
+  background: var(--panel, #fff);
+  border: 1px solid var(--border, #ddd);
+  border-radius: 10px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  cursor: pointer;
+}
+
+.library-card span {
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Avatar / icon */
+.library-card .avatar,
+.library-card .icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background: #e0e0e0;
+}
+
+/* Scrollbar clean */
+.card-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.card-row::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}

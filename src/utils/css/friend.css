@@ -1,96 +1,137 @@
-/* Friends Section - Now vertical like old Dynablock sidebar */
+
+
 .friends-container {
   display: flex;
-  flex-direction: column;   /* Stack up and down instead of side-scroll */
-  gap: 12px;                /* Space between friends */
-  padding: 12px 8px;
-  max-height: 500px;        /* Limit height so it doesn't take whole page */
-  overflow-y: auto;         /* Scroll if many friends */
-  background: #f0f0f0;     /* Light gray like old web pages */
-  border: 2px solid #ccc;   /* Classic border */
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  max-height: 100%;
+  overflow-y: auto;
+
+  background: var(--panel, #f0f0f0);
+  border: 1px solid var(--border, #ccc);
   border-radius: 8px;
 }
 
-/* Friend item - Bigger and blockier */
+
 .friend-item {
   display: flex;
   align-items: center;
-  padding: 8px;
-  background: #fff;         /* White card feel */
+  gap: 12px;
+
+  padding: 8px 10px;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 6px;
+
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .friend-item:hover {
-  background: #e0e0ff;     /* Light blue hover like old buttons */
+  background: #e8ebff;
+  border-color: #b5bdfc;
 }
 
-/* Avatar - Square with slight round (old Roblox was square-ish) */
 .friend-avatar {
-  width: 60px;
-  height: 60px;
-  margin-right: 12px;       /* Space from name */
-  border-radius: 12px;      /* Slight round for cute retro */
-  background: #ffcc00;      /* Yellow like classic Roblox heads */
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+
+  border-radius: 10px; /* Square-ish retro feel */
+  background: #ffcc00;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  font-weight: bold;
+
+  font-size: 22px;
+  font-weight: 700;
   color: #333;
+
   position: relative;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Small shadow for pop */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
 
-/* Add Friend button - Special style */
-.friend-item.add-friend {
-  justify-content: center;
-  background: #e0f7fa;
-  border: 2px dashed #00acc1;
+.friend-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
-.friend-item.add-friend .friend-avatar {
-  background: transparent;
-  border: none;
-  color: #00acc1;
-  font-size: 30px;
-}
-
-/* Name - Bigger and bold */
 .friend-name {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
-  flex-grow: 1;             /* Takes up space */
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Online dot - Classic green circle */
 .friend-avatar::after {
   content: "";
   position: absolute;
   bottom: 4px;
   right: 4px;
-  width: 14px;
-  height: 14px;
-  background: #4caf50;     /* Bright green */
-  border: 3px solid #fff;
+
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  display: none;            /* Hidden by default */
+
+  background: #4caf50;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+
+  display: none;
 }
 
 .friend-item.online .friend-avatar::after {
-  display: block;           /* Show when online */
+  display: block;
 }
 
-/* Scrollbar - Retro subtle */
+.friend-item.add-friend {
+  justify-content: center;
+  gap: 8px;
+
+  background: #e6f7fb;
+  border: 2px dashed #00acc1;
+}
+
+.friend-item.add-friend:hover {
+  background: #d9f1f7;
+}
+
+.friend-item.add-friend .friend-avatar {
+  background: transparent;
+  box-shadow: none;
+  color: #00acc1;
+  font-size: 28px;
+}
+
+.friend-item.add-friend .friend-avatar::after {
+  display: none;
+}
+
+
 .friends-container::-webkit-scrollbar {
   width: 8px;
 }
 
+.friends-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .friends-container::-webkit-scrollbar-thumb {
-  background: #aaa;
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+}
+
+
+.friends-container .empty {
+  padding: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted, #777);
 }

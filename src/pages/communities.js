@@ -7,46 +7,6 @@ if (!document.getElementById("communities-css")) {
   document.head.appendChild(link);
 }
 
-// Fake communities for testing (delete later when real data comes!)
-communities = [
-  {
-    id: "1",
-    name: "Math Masters",
-    icon: "https://via.placeholder.com/100?text=Math",
-    members: 12500,
-    creator: "TeacherPro",
-    description: "Best place to learn math with fun games!",
-    shouts: [
-      { author: "CoolKid", avatar: "https://via.placeholder.com/50?text=CK", text: "Just beat level 10!", time: "2 hours ago" },
-      { author: "StudyStar", avatar: "https://via.placeholder.com/50?text=SS", text: "Who wants to team up?", time: "5 hours ago" }
-    ],
-    members_list: [
-      { name: "Player1", avatar: "https://via.placeholder.com/50?text=P1" },
-      { name: "Player2", avatar: "https://via.placeholder.com/50?text=P2" },
-      // Add more if you want!
-    ]
-  },
-  {
-    id: "2",
-    name: "History Heroes",
-    icon: "https://via.placeholder.com/100?text=History",
-    members: 8200,
-    creator: "HistoryFan",
-    description: "Explore ancient worlds and quizzes!",
-    shouts: [],
-    members_list: []
-  },
-  {
-    id: "3",
-    name: "Science Squad",
-    icon: "https://via.placeholder.com/100?text=Science",
-    members: 156000,
-    creator: "LabMaster",
-    description: "Experiments, rockets, and more!",
-    rank: "#1 in Science"
-  }
-];
-
 let communities = [];
 let currentCommunity = null;
 
