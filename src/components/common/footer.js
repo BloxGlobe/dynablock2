@@ -43,7 +43,7 @@ export default function initFooter(container) {
 
           <!-- Copyright -->
           <div class="footer-copyright">
-            <p>© 2025 DynaBlocks Corporation</p>
+            <p>© 2025 Dynamics Corporation</p>
           </div>
         </div>
 
