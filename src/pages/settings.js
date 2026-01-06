@@ -5,7 +5,7 @@ if (!document.getElementById("settings-css")) {
   const link = document.createElement("link");
   link.id = "settings-css";
   link.rel = "stylesheet";
-  link.href = "src/utils/css/settings/setting.css";
+  link.href = "src/utils/css/settings.css/setting.css";
   document.head.appendChild(link);
 }
 
@@ -15,11 +15,10 @@ let settingsOpen = false;
  * Get current user from session
  */
 function getCurrentUser() {
-  // Get from global SessionManager (set by auth.js)
-  if (window.SessionManager && window.SessionManager.user) {
-    return window.SessionManager.user;
+  // FIX: use SessionManager API instead of .user
+  if (window.SessionManager && typeof window.SessionManager.getUser === 'function') {
+    return window.SessionManager.getUser();
   }
-  
   return null;
 }
 
@@ -30,7 +29,7 @@ export function initSettings(anchorEl) {
   if (settingsOpen || !anchorEl) return;
 
   const user = getCurrentUser();
-  
+
   const panel = document.createElement("div");
   panel.id = "settings-panel";
 
@@ -107,7 +106,6 @@ export function initSettings(anchorEl) {
           Login
         </button>
       `}
-
     </div>
   `;
 
@@ -132,41 +130,22 @@ function handleAction(e) {
 
   switch (action) {
     case "account":
-      console.log("Open account info page");
-      if (window.navigateToPage) {
-        window.navigateToPage('account');
-      }
+      window.navigateToPage?.('account');
       break;
-
     case "settings":
-      console.log("Open settings page");
-      if (window.navigateToPage) {
-        window.navigateToPage('settings');
-      }
+      window.navigateToPage?.('settings');
       break;
-
     case "help":
-      console.log("Open help & safety");
-      if (window.navigateToPage) {
-        window.navigateToPage('help');
-      }
+      window.navigateToPage?.('help');
       break;
-
     case "switch":
-      console.log("Switch accounts");
       alert('Account switcher coming soon!');
       break;
-
     case "logout":
-      console.log("Logging out...");
       handleLogout();
       break;
-
     case "login":
-      console.log("Navigate to login");
-      if (window.navigateToPage) {
-        window.navigateToPage('login');
-      }
+      window.navigateToPage?.('login');
       break;
   }
 
@@ -178,45 +157,34 @@ function handleAction(e) {
  */
 function handleLogout() {
   const confirmed = confirm("Are you sure you want to logout?");
-  
   if (!confirmed) return;
 
-  // Call logout from SessionManager
-  if (window.SessionManager && typeof window.SessionManager.logout === 'function') {
+  if (window.SessionManager?.logout) {
     window.SessionManager.logout();
   }
 
-  // Navigate to home
-  if (window.navigateToPage) {
-    window.navigateToPage('home');
-  }
+  // FIX: notify rest of app
+  window.dispatchEvent(new Event('session:logout'));
+
+  window.navigateToPage?.('home');
 }
 
-/**
- * Position the settings panel
- */
+/* ---- rest unchanged ---- */
+
 function positionPanel(panel, anchor) {
   const rect = anchor.getBoundingClientRect();
-  
   panel.style.top = `${rect.bottom + 8}px`;
   panel.style.right = `${window.innerWidth - rect.right}px`;
-  
+
   setTimeout(() => {
     const panelRect = panel.getBoundingClientRect();
-    
-    if (panelRect.right > window.innerWidth) {
-      panel.style.right = '8px';
-    }
-    
+    if (panelRect.right > window.innerWidth) panel.style.right = '8px';
     if (panelRect.bottom > window.innerHeight) {
       panel.style.top = `${rect.top - panelRect.height - 8}px`;
     }
   }, 0);
 }
 
-/**
- * Close settings panel
- */
 function closeSettings() {
   const panel = document.getElementById("settings-panel");
   if (!panel) return;
@@ -227,43 +195,23 @@ function closeSettings() {
   document.removeEventListener("keydown", escClose);
 }
 
-/**
- * Close panel when clicking outside
- */
 function outsideClose(e) {
   const panel = document.getElementById("settings-panel");
-  if (
-    panel &&
-    !panel.contains(e.target) &&
-    !e.target.closest(".settings-btn")
-  ) {
+  if (panel && !panel.contains(e.target) && !e.target.closest(".settings-btn")) {
     closeSettings();
   }
 }
 
-/**
- * Close panel on Escape key
- */
 function escClose(e) {
   if (e.key === "Escape") closeSettings();
 }
 
-/**
- * Get user initials for avatar
- */
 function getUserInitials(username) {
   if (!username) return "U";
-  
   const parts = username.split(' ');
-  if (parts.length >= 2) {
-    return (parts[0][0] + parts[1][0]).toUpperCase();
-  }
-  return username.substring(0, 2).toUpperCase();
+  return (parts[0][0] + (parts[1]?.[0] || '')).toUpperCase();
 }
 
-/**
- * Escape HTML to prevent XSS
- */
 function escapeHtml(text) {
   const div = document.createElement('div');
   div.textContent = text;
