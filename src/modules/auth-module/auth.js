@@ -83,6 +83,21 @@ try {
   console.warn('Unable to initialize SessionManager:', e);
 }
 
+// Ensure register-login module files are loaded by the browser runtime.
+// This guarantees the components are available when routes or other parts
+// of the app try to use them (helps environments that rely on side-effect imports).
+(async function preloadRegisterLogin() {
+  try {
+    await Promise.all([
+      import('./register-login/login.jsx'),
+      import('./register-login/register.jsx')
+    ]);
+    console.log('register-login modules preloaded');
+  } catch (err) {
+    console.warn('Failed to preload register-login modules:', err);
+  }
+})();
+
 /**
  * Mount React component to DOM
  */
