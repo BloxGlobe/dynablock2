@@ -1,3 +1,6 @@
+
+
+
 export function createRegisterForm() {
   const container = document.createElement('div');
   container.style.cssText = `
